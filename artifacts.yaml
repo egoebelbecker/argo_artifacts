@@ -4,6 +4,7 @@ metadata:
   namespace: argo
 spec:
   entrypoint: steps
+  serviceAccountName: argo
   templates:
 
     - name: python-random
@@ -11,6 +12,8 @@ spec:
         artifacts:
           - name: output
             path: /tmp/random.txt
+            archive:
+              none: { }
       container:
         name: random_number
         image: 'ericgoebelbecker/random_number:latest'
@@ -25,6 +28,8 @@ spec:
         artifacts:
           - name: output
             path: /tmp/result.txt
+            archive:
+              none: { }
       container:
         name: python-diff
         image: 'ericgoebelbecker/difference:latest'
